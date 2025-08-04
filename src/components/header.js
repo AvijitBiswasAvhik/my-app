@@ -35,9 +35,30 @@ export default function Header() {
               </span>
             </Link>
           </div>
-          
-        </div>
-          <div className="flex items-center justify-end col-span-full sm:md:col-span-7 md:col-span-8 lg:col-span-1">
+          <div className="sm:hidden flex items-center justify-end -col-end-1 border border-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.9}
+              stroke="currentColor"
+              className="size-9"
+              id="toogle-menu"
+              onClick={(e) => {
+                e.stopPropagation();
+                document
+                  .getElementById("navigation-menu")
+                  .classList.toggle("hidden");
+              }}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+              />
+            </svg>
+          </div>
+          <div className="flex items-center justify-end col-span-full sm:bg-#a1a111 sm:col-span-7 md:col-span-7 md:col-span-8 lg:col-span-1">
             <nav
               aria-label="Main navigation"
               className="header-nav hidden sm:block"
@@ -65,31 +86,8 @@ export default function Header() {
               </ul>
             </nav>
           </div>
-          
+        </div>
       </div>
-      <div className="sm:hidden flex items-center justify-end -col-end-1 sm:col-span-0 border border-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.9}
-              stroke="currentColor"
-              className="size-9"
-              id="toogle-menu"
-              onClick={(e) => {
-                e.stopPropagation();
-                document
-                  .getElementById("navigation-menu")
-                  .classList.toggle("hidden");
-              }}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-              />
-            </svg>
-          </div>
     </header>
   );
 }
