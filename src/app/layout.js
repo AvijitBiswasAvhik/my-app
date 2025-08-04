@@ -24,11 +24,13 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <AppLoader>
-          <Header />
+        <div className="header-container sm:mx-3 md:mx-8 lg:mx-15 xl:mx-18">
+          <AppLoader>
+            <Header />
 
-          <main id="main-tag">{children}</main>
-        </AppLoader>
+            <main id="main-tag">{children}</main>
+          </AppLoader>
+        </div>
       </body>
     </html>
   );
