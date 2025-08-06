@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header.js";
 import AppLoader from "@/components/AppLoader";
+import ContextProvider from "./ContextProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,8 +28,9 @@ export default function RootLayout({ children }) {
         <div className="header-container sm:mx-3 md:mx-8 lg:mx-15 xl:mx-18">
           <AppLoader>
             <Header />
-
-            <main id="main-tag">{children}</main>
+            <ContextProvider>
+              <main id="main-tag">{children}</main>
+            </ContextProvider>
           </AppLoader>
         </div>
       </body>

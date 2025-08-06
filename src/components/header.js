@@ -1,7 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import "./header.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -15,6 +16,19 @@ const geistMono = Geist_Mono({
 });
 export default function Header() {
   let [showMeenu, setShowMenu] = useState();
+  let [pathname, setPathname] = useState({ path: usePathname() });
+  const pathnames = usePathname();
+  const boxRef = useRef();
+  let menu = ["/", "/reviews", "/categories", "/contact", "/chat", "/about"];
+  useEffect(() => {
+    setPathname({ name: pathnames });
+    const postData = {
+      text: "Explain how AI works in a few words",
+    };
+    
+  }, []);
+  //AIzaSyCysboseeTzjvMGXVVeKTMg2-yh3WmNV3A
+  console.log(pathname);
   return (
     <header id="header-main" className="sticky top-0 shadow-md">
       <div className="grid grid-cols-10 lg:grid-cols-2 header-container-row items-center box-border">
@@ -47,7 +61,7 @@ export default function Header() {
               e.stopPropagation();
               const menu = document.getElementById("navigation-menu");
               menu.classList.toggle("hidden");
-              menu.classList.toggle("h-[35px]");
+              //menu.classList.toggle("h-[35px]");
             }}
           >
             <path
@@ -63,25 +77,27 @@ export default function Header() {
             className="header-nav hidden sm:block"
             id="navigation-menu"
           >
+            
             <ul className="header-menu">
-              <li>
-                <Link href="/">Home</Link>
-              </li>
-              <li>
-                <Link href="/reviews">Reviews</Link>
-              </li>
-              <li>
-                <Link href="/categories">Categories</Link>
-              </li>
-              <li>
-                <Link href="/contact">Contact</Link>
-              </li>
-              <li>
-                <Link href="/news">News</Link>
-              </li>
-              <li>
-                <Link href="/about">About</Link>
-              </li>
+              {menu.map((item) => {
+                let color = item == pathnames ? "header-active-link" : "";
+                return (
+                  <li key={item + "header-menu"}>
+                    <Link
+                      href={item}
+                      ref={boxRef}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        
+                        setPathname({ name: item });
+                      }}
+                      className={color + " capitalize"}
+                    >
+                      {item == "/" ? "home" : item.substring(1)}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
         </div>
